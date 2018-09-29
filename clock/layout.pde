@@ -28,7 +28,7 @@ class Layout{
   public float weightPointer;
   
   public int infoStroke = #353535;
-  public int infoBack = #000000; 
+  public int infoBack = backColor; 
   
   public boolean onlyPointers = false;
 }

@@ -33,6 +33,7 @@ void draw() {
   //FIM CONFIGS
   background(layout.backColor);
   textFont(f, layout.clockRadius/20);
+  
   fill(255);
   
   if(!stop){
@@ -49,9 +50,11 @@ void draw() {
   
   new Frame().show();
   
-  new Pointer().show('H');
-  new Pointer().show('M');
-  new Pointer().show('S');
+  Pointer pointer = new Pointer();
+  
+  pointer.show('H');
+  pointer.show('M');
+  pointer.show('S');
 }
 
 void keyReleased(){

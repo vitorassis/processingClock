@@ -1,55 +1,51 @@
 class Pointer{
+  int colorPointer [] = new int [3];
+  float weight [] = new float [3];
+  float radius [] = new float [3];
+  float value [] = new float [3];
+  
+  Pointer(){
+    colorPointer[0] = layout.colorPointerSec;
+    colorPointer[1] = layout.colorPointerMin; 
+    colorPointer[2] = layout.colorPointerHour;
+    
+    weight[0] = layout.weightSec;
+    weight[1] = layout.weightMin;
+    weight[2] = layout.weightHour;
+    
+    radius[0] = layout.secRadius;
+    radius[1] = layout.minRadius;
+    radius[2] = layout.hourRadius;
+    
+    value[0] = sec;
+    value[1] = min;
+    value[2] = hour;
+  }
+  
   void show(char type){
     switch(type){
       case 'H':
-        hr();
+        draw_pnt(2);
         break;
       case 'M':
-        mn();
+        draw_pnt(1);
         break;
       case 'S':
-        sec();
-        break;
+        draw_pnt(0);
       
     }
   }
   
-  private void hr(){
-    strokeWeight(layout.weightHour);
-    stroke(layout.colorPointerHour);
+  void draw_pnt(int index){
+    strokeWeight(weight[index]);
+    stroke(colorPointer[index]);
     noFill();
-    if(!layout.onlyPointers) arc(0, 0, layout.hourRadius, layout.hourRadius, 0, hour);
+    if(!layout.onlyPointers) arc(0, 0, radius[index], radius[index], 0, value[index]);
     rotate(-PI/4);
-    rotate(hour);
-    strokeWeight(layout.weightPointer/2);  
-    line(0, 0, (layout.hourRadius/3) + layout.weightHour,(layout.hourRadius/3) + layout.weightHour);
-    rotate(-hour);
-    rotate(PI/4);
-  }
-  
-  private void mn(){
-    strokeWeight(layout.weightMin);  
-    stroke(layout.colorPointerMin);
-    noFill();
-    if(!layout.onlyPointers) arc(0, 0, layout.minRadius, layout.minRadius, 0, min);
-    rotate(-PI/4);
-    rotate(min);
-    strokeWeight(layout.weightPointer/2);  
-    line(0, 0,(layout.minRadius/3) + layout.weightMin,(layout.minRadius/3) + layout.weightMin);
-    rotate(-min);
-    rotate(PI/4);
-  }
-  
-  private void sec(){
-    strokeWeight(layout.weightSec);
-    stroke(layout.colorPointerSec);
-    noFill();
-    if(!layout.onlyPointers) arc(0, 0, layout.secRadius, layout.secRadius, 0, sec);
-    rotate(-PI/4);
-    rotate(sec);
-    strokeWeight(layout.weightPointer/2);  
-    line(0, 0, (layout.secRadius/3) + 2*layout.weightSec,(layout.secRadius/3) + 2*layout.weightSec);
-    rotate(-sec);
+    rotate(value[index]);
+    strokeWeight(weight[index]);  
+    line(0, 0, (radius[index]/3) + weight[index],(radius[index]/3) + weight[index]);
+    rotate(-value[index]);
     rotate(PI/4);
   }
 }
