@@ -9,8 +9,7 @@ class Text{
       textAlign(CENTER);
       text(nf(hourReal, 2)+":"+nf(minReal, 2)+":"+nf(secReal, 2), width/2, (height)-layout.clockRadius/40);
       textAlign(LEFT);
-      
-      text((stop?"Voltar":"Pausar")+": <Espaço>", 0, (height/2)-(layout.clockRadius/2));
+      text("  "+(stop?"|| "+nf(hour(), 2)+":"+nf(minute(), 2)+":"+nf(second(), 2):">"), 0, (height/2)-(layout.clockRadius/2));
   
       fill(layout.infoBack);
       stroke(layout.infoStroke);
