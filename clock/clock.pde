@@ -4,8 +4,6 @@ PFont f;
 
 boolean onlyAbsValues = false;
 
-float taxa = 0.87;
-
 Layout layout;
 
 void setup() {
@@ -31,7 +29,7 @@ int hourReal;
 
 void draw() {                 
   //CONFIGS
-  layout = Configs.configure(layout); 
+  layout = Configs.configure(layout, width, height); 
   //FIM CONFIGS
   background(layout.backColor);
   textFont(f, layout.clockRadius/20);
@@ -51,7 +49,7 @@ void draw() {
   float min_dg = min/rad_dg;
   float hour_dg = hour/rad_dg;
     
-  if(abs(height - width) > abs(layout.clockRadius/(1+taxa))){
+  if(abs(height - width) > abs(layout.clockRadius/(1+Configs.taxa))){
     fill(255);
     textAlign(CENTER);
     text(nf(hourReal, 2)+":"+nf(minReal, 2)+":"+nf(secReal, 2), width/2, (height)-layout.clockRadius/40);
