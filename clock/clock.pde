@@ -15,6 +15,11 @@ void setup() {
   
   layout = new Layout();
   
+  
+  if(!new Configs().fileExists("configs.json")){
+    while(!new Configs().createFile("configs.json"));
+  }
+  
 }
 
 boolean stop = false;
@@ -29,7 +34,7 @@ int hourReal;
 
 void draw() {                 
   //CONFIGS
-  layout = Configs.configure(layout, width, height); 
+  layout = new Configs().configure(layout, width, height); 
   //FIM CONFIGS
   background(layout.backColor);
   textFont(f, layout.clockRadius/20);

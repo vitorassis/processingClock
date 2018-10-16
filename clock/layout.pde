@@ -30,5 +30,5 @@ class Layout{
   public int infoStroke = #353535;
   public int infoBack = backColor; 
   
-  public boolean onlyPointers = false;
+  public boolean onlyPointers;
 }

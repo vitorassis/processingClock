@@ -4,7 +4,7 @@ class Text{
     float min_dg = min/rad_dg;
     float hour_dg = hour/rad_dg;
       
-    if(abs(height - width) > abs(layout.clockRadius/(1+Configs.taxa))){
+    if(abs(height - width) > abs(layout.clockRadius/(1+new Configs().taxa))){
       fill(255);
       textAlign(CENTER);
       text(nf(hourReal, 2)+":"+nf(minReal, 2)+":"+nf(secReal, 2), width/2, (height)-layout.clockRadius/40);
