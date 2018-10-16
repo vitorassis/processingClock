@@ -18,9 +18,9 @@ class Configs{
       output.println("\"monitor\": false,");
       output.println("\"arcos\": true,");    
       output.println("\"horas redondas\": false,");
-      output.println("\"cor_horas\": \"\\uff1919\",");    
-      output.println("\"cor_minutos\": \"\\u88D317\",");  
-      output.println("\"cor_segundos\": \"\\u0080ff\"");    
+      output.println("\"cor_horas\": \"coral\",");    
+      output.println("\"cor_minutos\": \"blue\",");  
+      output.println("\"cor_segundos\": \"chocolate\"");    
       output.println();
       output.println();
       output.println();
@@ -39,27 +39,46 @@ class Configs{
   
   public Layout configure(Layout layout, float w, float h){
     
-      JSONObject clr = parseJSONObject(
-    "{"+
-      "\"aliceblue\": [240, 248, 255],"+
-      "\"antiquewhite\": [250, 235, 215],"+
-      "\"aqua\": [0, 255, 255],"+
-      "\"aquamarine\": [127, 255, 212],"+
-      "\"azure\": [240, 255, 255],"+
-      "\"beige\": [245, 245, 220],"+
-      "\"bisque\": [255, 228, 196],"+
-      "\"black\": [0, 0, 0],"+
-      "\"blanchedalmond\": [255, 235, 205],"+
-      "\"blue\": [0, 0, 255],"+
-      "\"blueviolet\": [138, 43, 226],"+
-      "\"brown\": [165, 42, 42],"+
-      "\"burlywood\": [222, 184, 135],"+
-      "\"cadetblue\": [95, 158, 160],"+
-      "\"chartreuse\": [127, 255, 0],"+
-      "\"chocolate\": [210, 105, 30],"+
-      "\"coral\": [255, 127, 80],"+
-    "}"
-    );
+        Object [][] clr = {
+        {
+          "aliceblue",
+          "antiquewhite",
+          "aqua",
+          "aquamarine",
+          "azure",
+          "beige",
+          "bisque",
+          "black",
+          "blanchedalmond",
+          "blue",
+          "blueviolet",
+          "brown",
+          "burlywood",
+          "cadetblue",
+          "chartreuse",
+          "chocolate",
+          "coral"
+        },
+        {
+          [240, 248, 255],
+          [250, 235, 215],
+          [0, 255, 255],
+          [127, 255, 212],
+          [240, 255, 255],
+          [245, 245, 220],
+          [255, 228, 196],
+          [0, 0, 0],
+          [255, 235, 205],
+          [0, 0, 255],
+          [138, 43, 226],
+          [165, 42, 42],
+          [222, 184, 135],
+          [95, 158, 160],
+          [127, 255, 0],
+          [210, 105, 30],
+          [255, 127, 80]
+        }
+    };
     
     JSONObject obj = getConfigs();
     
@@ -77,10 +96,23 @@ class Configs{
     
     layout.weightPointer = layout.clockRadius*0.02;
     
-    JSONArray = sec = clr.getJSONArray(obj.getString("cor_segundos"));
-    layout.colorPointerSec = hex();
-    layout.colorPointerMin = int(obj.getString("cor_minutos"));
-    layout.colorPointerHour = int(obj.getString("cor_horas"));
+    Object sec = null;
+    Object min = null;
+    Object hora = null;
+    
+    for(int i = 0; i<clr.lenght(); i++){
+      if(clr[0][i] == obj.getString("cor_segundos")){
+        sec = clr[1][i];
+      }if(clr[0][i] == obj.getString("cor_minutos")){
+        min = clr[1][i];
+      }if(clr[0][i] == obj.getString("cor_horas")){
+        hora = clr[1][i];
+      }
+    }
+    
+    layout.colorPointerSec = hex(sec);
+    layout.colorPointerMin = int(min);
+    layout.colorPointerHour = int(hora);
     
     layout.onlyPointers = !obj.getBoolean("arcos");
     
