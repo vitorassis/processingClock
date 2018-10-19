@@ -1,3 +1,7 @@
+import java.lang.ProcessBuilder;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 final float rad_dg = 0.0174532925;
 
 PFont f;
@@ -14,12 +18,6 @@ void setup() {
   f = createFont("Verdana", 16, true);
   
   layout = new Layout();
-  
-  
-  if(!new Configs().fileExists("configs.json")){
-    while(!new Configs().createFile("configs.json"));
-  }
-  
 }
 
 boolean stop = false;
@@ -32,7 +30,10 @@ int secReal;
 int minReal;
 int hourReal;
 
-void draw() {                 
+void draw() {           
+  if(!new Configs().fileExists("configs.json")){
+    new Configs().createFile("configs.json");
+  }
   //CONFIGS
   layout = new Configs().configure(layout, width, height); 
   //FIM CONFIGS
@@ -64,6 +65,6 @@ void draw() {
 
 void keyReleased(){
   if(key == ' '){
-      stop = !stop;                                                         
-    }
+    stop = !stop;                                          
+  }
 }
